@@ -1,0 +1,50 @@
+{
+    "name": "wdda/laravel-finder-tests",
+    "type": "library",
+    "description": "This package uses reflection to find tests",
+    "keywords": [
+        "tests",
+        "laravel"
+    ],
+    "homepage": "https://github.com/wdda/laravel-finder-tests",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitriy",
+            "email": "dima@wdda.pro",
+            "homepage": "http://wdda.pro",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "~7.0",
+        "adagio/class-finder": "^1.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "3.4.*",
+        "phpunit/phpunit": ">=6.5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "WDDA\\LaravelFinderTests\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "dev"
+        },
+        "laravel": {
+            "providers": [
+                "WDDA\\LaravelFinderTests\\FinderTestsProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
