@@ -1,11 +1,12 @@
 {
     "name": "wdda/laravel-finder-tests",
-    "version": "1.0.0",
     "type": "library",
     "description": "This package uses reflection to find tests",
     "keywords": [
         "tests",
-        "laravel"
+        "laravel",
+        "finder",
+        "unit"
     ],
     "homepage": "https://github.com/wdda/laravel-finder-tests",
     "license": "MIT",
