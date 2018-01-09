@@ -1,5 +1,6 @@
 {
     "name": "wdda/laravel-finder-tests",
+    "version": "1.0.0",
     "type": "library",
     "description": "This package uses reflection to find tests",
     "keywords": [
