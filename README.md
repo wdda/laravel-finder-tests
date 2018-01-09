@@ -2,9 +2,6 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 Laravel Finder Unit Tests
@@ -98,8 +95,5 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-downloads]: https://img.shields.io/packagist/dt/wdda/laravel-finder-tests.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/wdda/laravel-finder-tests
-[link-travis]: https://travis-ci.org/wdda/laravel-finder-tests
-[link-scrutinizer]: https://scrutinizer-ci.com/g/wdda/laravel-finder-tests/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/wdda/laravel-finder-tests
 [link-downloads]: https://packagist.org/packages/wdda/laravel-finder-tests
 [link-author]: https://github.com/wdda
