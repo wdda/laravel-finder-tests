@@ -1,4 +1,4 @@
 language: php
-before_script: composer install -require-dev
+before_script: composer install --require-dev
 php:
   - '7.0'
