@@ -1,6 +1,7 @@
 # Laravel Finder Tests
 
 [![Software License][ico-license]](LICENSE.md)
+[![Build Status](https://travis-ci.org/wdda/laravel-finder-tests.svg?branch=v1.0.0)](https://travis-ci.org/wdda/laravel-finder-tests)
 
 Laravel Finder Unit Tests. 
 
