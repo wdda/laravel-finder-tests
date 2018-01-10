@@ -1,10 +1,33 @@
 # Laravel Finder Tests
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Total Downloads][ico-downloads]][link-downloads]
 
-Laravel Finder Unit Tests
+Laravel Finder Unit Tests. 
+
+## Notice
+
+The name of the class tests must match exactly with the name of the class
+ ```php
+//Class
+ClassName.php
+
+//Test class
+ClassNameTest.php
+```
+the name of the test methods and the name of the class methods must match
+ 
+```php
+//In class
+public function methodName() 
+{
+    ...
+}
+//In test class
+public function testMethodName() 
+{
+    ...
+}
+```
 
 ## Install
 
@@ -89,11 +112,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [ico-version]: https://img.shields.io/packagist/v/wdda/laravel-finder-tests.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/wdda/laravel-finder-tests/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/wdda/laravel-finder-tests.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/wdda/laravel-finder-tests.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/wdda/laravel-finder-tests.svg?style=flat-square
-
-[link-packagist]: https://packagist.org/packages/wdda/laravel-finder-tests
-[link-downloads]: https://packagist.org/packages/wdda/laravel-finder-tests
 [link-author]: https://github.com/wdda

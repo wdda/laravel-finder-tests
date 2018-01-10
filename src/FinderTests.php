@@ -58,6 +58,14 @@ class FinderTests
             throw new \Exception("Not dir for classes in config finder-tests.php");
         }
 
+        if (empty($this->config['directory'][0]['tests'])) {
+            throw new \Exception("Not tests in config finder-tests.php");
+        }
+
+        if (empty($this->config['directory'][0]['tests']['dir'])) {
+            throw new \Exception("Not dir for tests in config finder-tests.php");
+        }
+
         return $this->config;
     }
 
@@ -210,7 +218,8 @@ class FinderTests
 
     public function findDiff()
     {
-        $classesTests = $this->finder();
+        $classesAndTests = $this->finder();
+
         $diff = [
             'minus' => [
                 'classes' => [],
@@ -222,9 +231,9 @@ class FinderTests
             ]
         ];
 
-        foreach ($classesTests['classes'] as $class) {
+        foreach ($classesAndTests['classes'] as $class) {
             $fileName = $class['fileName'];
-            $fileTest = $classesTests['tests']->where('fileName', $fileName . 'Test')->first();
+            $fileTest = $classesAndTests['tests']->where('fileName', $fileName . 'Test')->first();
 
             if (!$fileTest) {
                 $diff['minus']['classes'][] = $class['name'];

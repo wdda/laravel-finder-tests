@@ -3,6 +3,7 @@ return  [
     'directory' => [
         [
             'classes' => [
+                'dir' => '/',
                 'methodsExclude' => [
                     '__construct'
                 ]

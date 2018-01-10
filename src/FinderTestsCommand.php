@@ -40,13 +40,11 @@ class FinderTestsCommand extends Command
         $cmd = $this->option('limit');
 
         if ($cmd == 'default') {
-            $cmd = $this->choice('choose limit', ['only not found', 'only found', 'all'], 0);
+            $cmd = $this->choice('choose limit', ['uncovered', 'covered', 'all'], 0);
         }
-
 
         $finder = new FinderTests();
         $diff = $finder->findDiff();
-
 
         if ($cmd == 0) {
             $this->printToTable($diff, 'minus');
@@ -60,7 +58,6 @@ class FinderTestsCommand extends Command
             $this->printToTable($diff, 'minus');
             $this->printToTable($diff, 'plus');
         }
-
 
         return true;
     }
@@ -81,9 +78,17 @@ class FinderTestsCommand extends Command
             }
 
             $this->table(['Classes'], $diff[$type]['classes']);
+        } else {
+            if ($type == 'minus') {
+                $this->info('Uncovered classes not found');
+            }
+
+            if ($type == 'plus') {
+                $this->comment('Covered classes are not found');
+            }
         }
 
-        if (!empty($diff[$type]['classes'])) {
+        if (!empty($diff[$type]['methods'])) {
             if ($type == 'minus') {
                 $this->comment('Not methods classes tests');
             }
@@ -93,6 +98,14 @@ class FinderTestsCommand extends Command
             }
 
             $this->table(['Name', 'Class', 'Directory'], $diff[$type]['methods']);
+        } else {
+            if ($type == 'minus') {
+                $this->info('Uncovered methods not found');
+            }
+
+            if ($type == 'plus') {
+                $this->comment('Covered methods are not found');
+            }
         }
     }
 }

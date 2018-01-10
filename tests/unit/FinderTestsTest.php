@@ -62,8 +62,9 @@ class FinderTestsTest extends TestCase
     {
         $configTest = $this->config;
         $files = $this->finderTests->getFilesFromDirectory($configTest['directory'][0], 'classes');
-        $class = $this->finderTests->getClass($files[0]);
-        $methods = $this->finderTests->getMethods($class, false);
+        $path = $files[0]->getRealPath();
+        $class = $this->finderTests->getClass($path);
+        $methods = $this->finderTests->getMethods($class, false, $path);
         $this->assertInternalType('array', $methods);
         $this->assertNotEmpty($methods);
     }
