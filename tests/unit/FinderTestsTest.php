@@ -39,8 +39,7 @@ class FinderTestsTest extends TestCase
 
     public function testGetFilesFromDirectory()
     {
-        $configTest = $this->config;
-        $files = $this->finderTests->getFilesFromDirectory($configTest['directory'][0], 'classes');
+        $files = $this->finderTests->getFilesFromDirectory($this->config['directory'][0], 'classes');
         $this->assertInternalType('array', $files);
     }
 
@@ -52,16 +51,14 @@ class FinderTestsTest extends TestCase
 
     public function testGetClass()
     {
-        $configTest = $this->config;
-        $files = $this->finderTests->getFilesFromDirectory($configTest['directory'][0], 'classes');
+        $files = $this->finderTests->getFilesFromDirectory($this->config['directory'][0], 'classes');
         $class = $this->finderTests->getClass($files[0]);
         $this->assertInternalType('string', $class);
     }
 
     public function testGetMethods()
     {
-        $configTest = $this->config;
-        $files = $this->finderTests->getFilesFromDirectory($configTest['directory'][0], 'classes');
+        $files = $this->finderTests->getFilesFromDirectory($this->config['directory'][0], 'classes');
         $path = $files[0]->getRealPath();
         $class = $this->finderTests->getClass($path);
         $methods = $this->finderTests->getMethods($class, false, $path);
