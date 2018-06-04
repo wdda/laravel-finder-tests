@@ -198,6 +198,7 @@ class FinderTests
                             'dir' => $dirFiles['dir'],
                             'fileData' => $file,
                             'fileName' => basename($path, '.php'),
+                            'uses' => $this->getUses($path),
                             'methods' => $this->getMethods($class, $dirFiles['methodsExclude'], $path)
                         ];
                     }
@@ -206,6 +207,13 @@ class FinderTests
         }
 
         return $classes;
+    }
+
+    public function getUses($path)
+    {
+        $fileData = file_get_contents($path);
+        preg_match_all("#use\s+([^;\s]*)#smi", $fileData, $matches);
+        return $matches[1];
     }
 
     public function finder()
@@ -231,9 +239,13 @@ class FinderTests
             ]
         ];
 
+        $cnt = 0;
         foreach ($classesAndTests['classes'] as $class) {
             $fileName = $class['fileName'];
-            $fileTest = $classesAndTests['tests']->where('fileName', $fileName . 'Test')->first();
+            $fileTest = $classesAndTests['tests']->where('fileName', $fileName . 'Test')
+                ->filter(function ($value, $key) use($class) {
+                    return in_array($class['name'], $value['uses']);
+                })->first();
 
             if (!$fileTest) {
                 $diff['minus']['classes'][] = $class['name'];
