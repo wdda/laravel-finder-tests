@@ -239,7 +239,6 @@ class FinderTests
             ]
         ];
 
-        $cnt = 0;
         foreach ($classesAndTests['classes'] as $class) {
             $fileName = $class['fileName'];
             $fileTest = $classesAndTests['tests']->where('fileName', $fileName . 'Test')
