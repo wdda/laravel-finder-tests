@@ -66,7 +66,7 @@ class FinderTestsCommand extends Command
     {
         if (!empty($diff[$type]['classes'])) {
             if ($type == 'minus') {
-                $this->comment('Not found classes tests');
+                $this->comment('Classes not found in tests');
             }
 
             if ($type == 'plus') {
@@ -90,7 +90,7 @@ class FinderTestsCommand extends Command
 
         if (!empty($diff[$type]['methods'])) {
             if ($type == 'minus') {
-                $this->comment('Not methods classes tests');
+                $this->comment('Methods not found in classes tests');
             }
 
             if ($type == 'plus') {
