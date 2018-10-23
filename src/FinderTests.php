@@ -43,30 +43,35 @@ class FinderTests
         }
 
         if (empty($this->config['directory'])) {
-            throw new \Exception("No directory in config finder-tests.php");
+            throw new \Exception("Not directory in config finder-tests.php");
         }
 
         if (empty($this->config['directory'][0])) {
-            throw new \Exception("No directory in config finder-tests.php");
+            throw new \Exception("Not directory in config finder-tests.php");
         }
 
         if (empty($this->config['directory'][0]['classes'])) {
-            throw new \Exception("No classes in config finder-tests.php");
+            throw new \Exception("Not classes in config finder-tests.php");
         }
 
         if (empty($this->config['directory'][0]['classes']['dir'])) {
-            throw new \Exception("No dir for classes in config finder-tests.php");
+            throw new \Exception("Not dir for classes in config finder-tests.php");
         }
 
         if (empty($this->config['directory'][0]['tests'])) {
-            throw new \Exception("No tests in config finder-tests.php");
+            throw new \Exception("Not tests in config finder-tests.php");
         }
 
         if (empty($this->config['directory'][0]['tests']['dir'])) {
-            throw new \Exception("No dir for tests in config finder-tests.php");
+            throw new \Exception("Not dir for tests in config finder-tests.php");
         }
 
         return $this->config;
+    }
+
+    public function getDirectoryTestByClasses($class)
+    {
+        return collect($this->config['directory'])->where('classes.dir', $class['dir'])->first()['tests']['dir'];
     }
 
     public function getFilesFromDirectory($directory, $type)
@@ -157,7 +162,7 @@ class FinderTests
                     foreach ($methodsExclude as $methodExclude) {
                         if ($methodExclude == $method->name) {
                             $exclude = true;
-                            continue;
+                            break;
                         }
                     }
                 }
@@ -187,7 +192,7 @@ class FinderTests
                         foreach ($dirFiles['classesExclude'] as $classExclude) {
                             if ($classExclude == $class) {
                                 $exclude = true;
-                                continue;
+                                break;
                             }
                         }
                     }
@@ -240,11 +245,14 @@ class FinderTests
         ];
 
         foreach ($classesAndTests['classes'] as $class) {
+
             $fileName = $class['fileName'];
-            $fileTest = $classesAndTests['tests']->where('fileName', $fileName . 'Test')
+            $testDir = $this->getDirectoryTestByClasses($class);
+            $fileTest = $classesAndTests['tests']->where('fileName', $fileName . 'Test')->where('dir', $testDir)
                 ->filter(function ($value, $key) use($class) {
                     return in_array($class['name'], $value['uses']);
                 })->first();
+            
 
             if (!$fileTest) {
                 $diff['minus']['classes'][] = $class['name'];
